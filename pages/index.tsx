@@ -1,86 +1,94 @@
-import type { NextPage } from 'next'
-import Head from 'next/head'
-import Image from 'next/image'
+import type { NextPage } from "next";
+import Head from "next/head";
+import Image from "next/image";
+import { useState } from "react";
 
 const Home: NextPage = () => {
+  const [emailId, setEmailId] = useState("");
+  const [twitterHandle, setTwitterHandle] = useState("");
+
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center py-2">
+    <>
       <Head>
-        <title>Create Next App</title>
+        <title>TweetBooks</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="flex w-full flex-1 flex-col items-center justify-center px-20 text-center">
-        <h1 className="text-6xl font-bold">
-          Welcome to{' '}
-          <a className="text-blue-600" href="https://nextjs.org">
-            Next.js!
-          </a>
-        </h1>
+      <div className="flex min-h-screen flex-col items-center justify-center bg-blue p-4 sm:p-6">
+        <main className="relative mx-auto w-full flex-1 rounded-xl bg-gray-lighter bg-[url('/assets/illustration-desktop.svg')] bg-contain bg-center bg-no-repeat bg-origin-content p-6 text-gray-darker sm:rounded-[1.25rem] ">
+          {/* Logo */}
+          <Image
+            src="/assets/logo.svg"
+            alt="TweetBooks"
+            height={50}
+            width={36}
+          />
 
-        <p className="mt-3 text-2xl">
-          Get started by editing{' '}
-          <code className="rounded-md bg-gray-100 p-3 font-mono text-lg">
-            pages/index.tsx
-          </code>
-        </p>
+          {/* Illustration */}
+          <img
+            src="/assets/illustration-mobile.svg"
+            alt=""
+            className="mx-auto -mt-6 block h-28 w-full sm:hidden"
+          />
 
-        <div className="mt-6 flex max-w-4xl flex-wrap items-center justify-around sm:w-full">
-          <a
-            href="https://nextjs.org/docs"
-            className="mt-6 w-96 rounded-xl border p-6 text-left hover:text-blue-600 focus:text-blue-600"
-          >
-            <h3 className="text-2xl font-bold">Documentation &rarr;</h3>
-            <p className="mt-4 text-xl">
-              Find in-depth information about Next.js features and its API.
+          <section className="mt-6 text-center sm:mt-20">
+            <h1 className="text-xl sm:text-5xl sm:leading-[4rem]">
+              Tweets of your favourite writers{" "}
+              <span className="block font-semibold">Now as an eBook</span>
+            </h1>
+
+            <p className="mt-5 text-sm font-medium text-gray sm:mt-3 sm:text-2xl">
+              Get the best of Twitter straight to your Inbox!
             </p>
-          </a>
 
-          <a
-            href="https://nextjs.org/learn"
-            className="mt-6 w-96 rounded-xl border p-6 text-left hover:text-blue-600 focus:text-blue-600"
-          >
-            <h3 className="text-2xl font-bold">Learn &rarr;</h3>
-            <p className="mt-4 text-xl">
-              Learn about Next.js in an interactive course with quizzes!
-            </p>
-          </a>
+            {/* Form */}
+            <form
+              className="mx-auto mt-12 max-w-[22.5rem] px-2 sm:mt-8"
+              onSubmit={(event) => {
+                event.preventDefault();
+              }}
+            >
+              <div>
+                <label htmlFor="twitterHandle" className="sr-only">
+                  Twitter Handle
+                </label>
+                <input
+                  type="text"
+                  name="twitterHandle"
+                  id="twitterHandle"
+                  className="w-full rounded-md border-gray-light bg-white pl-4 font-medium text-gray-dark placeholder:text-gray-light focus:border-gray-dark focus:ring-gray-dark sm:text-xl"
+                  placeholder="Your favourite Twitter Handle"
+                  value={twitterHandle}
+                  onChange={(event) => setTwitterHandle(event.target.value)}
+                />
+              </div>
 
-          <a
-            href="https://github.com/vercel/next.js/tree/canary/examples"
-            className="mt-6 w-96 rounded-xl border p-6 text-left hover:text-blue-600 focus:text-blue-600"
-          >
-            <h3 className="text-2xl font-bold">Examples &rarr;</h3>
-            <p className="mt-4 text-xl">
-              Discover and deploy boilerplate example Next.js projects.
-            </p>
-          </a>
+              <div className="mt-5">
+                <label htmlFor="emailId" className="sr-only">
+                  Email
+                </label>
+                <input
+                  type="email"
+                  name="emailId"
+                  id="emailId"
+                  className="w-full rounded-md border-gray-light bg-white pl-4 font-medium text-gray-dark placeholder:text-gray-light focus:border-gray-dark focus:ring-gray-dark sm:text-xl"
+                  placeholder="Your Email ID"
+                  value={emailId}
+                  onChange={(event) => setEmailId(event.target.value)}
+                />
+              </div>
 
-          <a
-            href="https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className="mt-6 w-96 rounded-xl border p-6 text-left hover:text-blue-600 focus:text-blue-600"
-          >
-            <h3 className="text-2xl font-bold">Deploy &rarr;</h3>
-            <p className="mt-4 text-xl">
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
-        </div>
-      </main>
+              <div className="mt-6">
+                <button className="inline-flex w-full items-center justify-center rounded-md border border-pink-neutral bg-pink py-2.5 font-semibold text-gray-darker hover:bg-pink-neutral focus:outline-none focus:ring-2 focus:ring-pink-neutral focus:ring-offset-2 sm:text-xl">
+                  Mail me the eBook :D
+                </button>
+              </div>
+            </form>
+          </section>
+        </main>
+      </div>
+    </>
+  );
+};
 
-      <footer className="flex h-24 w-full items-center justify-center border-t">
-        <a
-          className="flex items-center justify-center gap-2"
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-        </a>
-      </footer>
-    </div>
-  )
-}
-
-export default Home
+export default Home;
