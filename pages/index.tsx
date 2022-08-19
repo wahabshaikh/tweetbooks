@@ -15,7 +15,7 @@ const Home: NextPage = () => {
       </Head>
 
       <div className="flex min-h-screen flex-col items-center justify-center bg-blue p-4 sm:p-6">
-        <main className="relative mx-auto w-full flex-1 rounded-xl bg-gray-lighter bg-[url('/assets/illustration-desktop.svg')] bg-contain bg-center bg-no-repeat bg-origin-content p-6 text-gray-darker sm:rounded-[1.25rem] ">
+        <main className="relative mx-auto w-full flex-1 rounded-xl bg-gray-lighter p-6 text-gray-darker sm:rounded-[1.25rem] sm:bg-[url('/assets/illustration-desktop.svg')] sm:bg-contain sm:bg-center sm:bg-no-repeat sm:bg-origin-content ">
           {/* Logo */}
           <Image
             src="/assets/logo.svg"
